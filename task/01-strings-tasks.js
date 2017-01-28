@@ -202,14 +202,9 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    var verticalLines = "";
-
-    for(var i=0; i<height-2; i++){
-        verticalLines = verticalLines + "\u2502" + " ".repeat(width-2) + "\u2502"+"\n";
-    }
-
     return "\u250C" + "\u2500".repeat(width-2) + "\u2510"+"\n" + 
-            verticalLines + "\u2514" + "\u2500".repeat(width-2) + "\u2518"+"\n";
+            ("\u2502" + " ".repeat(width-2) + "\u2502"+"\n").repeat(height-2) + 
+            "\u2514" + "\u2500".repeat(width-2) + "\u2518"+"\n";
 }
 
 
