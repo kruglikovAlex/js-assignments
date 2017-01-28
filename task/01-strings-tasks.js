@@ -202,7 +202,31 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    var cornerUpLeft = "\u250C";
+    var cornerDnLeft = "\u2514";
+    var cornerUpRight = "\u2510";
+    var cornerDnRight = "\u2518";
+    var vertical = "\u2502";
+    var horizontal = "\u2500";
+    var result;
+    result = cornerUpLeft;
+    for(var i=0; i<width-2;i++){
+        result = result + horizontal;
+    }
+    result = result + cornerUpRight + "\n";
+    for(var i=0; i<height-2; i++){
+        result = result + vertical;
+        for(var j=0; j<width-2; j++){
+            result = result + " ";
+        }
+        result = result + vertical + "\n";
+    }
+    result = result + cornerDnLeft;
+    for(var i=0; i<width-2;i++){
+        result = result + horizontal;
+    }
+    result = result + cornerDnRight + "\n";
+    return result;
 }
 
 
