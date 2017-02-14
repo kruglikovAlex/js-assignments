@@ -224,7 +224,22 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    
+    return str.replace(/[a-zA-Z]/g,function(match){
+        return String.fromCharCode(
+            ((match = match.charCodeAt()) < 91 ? 78 : 110) > match ? match + 13 : match - 13
+            )
+    });
+
+/*
+    return (str = (str) ? str : this).split('').map(function(_)
+     {
+        if (!_.match(/[A-Za-z]/)) return _;
+        var c = Math.floor(_.charCodeAt(0) / 97);
+        var k = (_.toLowerCase().charCodeAt(0) - 83) % 26 || 26;
+        return String.fromCharCode(k + ((c == 0) ? 64 : 96));
+     }).join('');
+*/
 }
 
 /**
@@ -241,7 +256,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+    return ({}.toString.call(value).slice(8, -1) == "String") ? true : false;
 }
 
 
@@ -270,7 +285,8 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    //----------offset in the column ------------------ offset row
+    return 'A234567891JQK'.indexOf(value[0]) + '♣♦♥♠'.indexOf(value.slice(-1)) * 13;
 }
 
 
