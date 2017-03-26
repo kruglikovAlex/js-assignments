@@ -22,7 +22,9 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   return Math.round(new Date(value));
+    let theBigDay = new Date(value);
+    let sameAsBigDay = new Date();
+    return sameAsBigDay.setTime(theBigDay.getTime());
 }
 
 /**
