@@ -25,7 +25,7 @@ function parseDataFromRfc2822(value) {
     let newDate = new Date(value);
     let stringUTCDate = newDate.toUTCString();
 
-    return new Date(stringUTCDate);
+    return Date.parse(value);
 }
 
 /**
