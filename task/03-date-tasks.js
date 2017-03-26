@@ -22,7 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-   throw new Error('Not implemented');
+   return new Date(value);
 }
 
 /**
@@ -37,7 +37,7 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
-   throw new Error('Not implemented');
+   return new Date(value);
 }
 
 
@@ -56,7 +56,17 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
-   throw new Error('Not implemented');
+    /*if (year is not divisible by 4) then (it is a common year)
+      else if (year is not divisible by 100) then (it is a leap year)
+      else if (year is not divisible by 400) then (it is a common year)
+      else (it is a leap year)*/
+    if(date.getFullYear()%4!=0){
+      return false;
+    }else if(date.getFullYear()%100!=0){
+      return true;
+    }else if(date.getFullYear()%400!=0){
+      return false;
+    }else return true;
 }
 
 
@@ -76,9 +86,17 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+    let timeDiff = Math.abs(startDate.getTime() - endDate.getTime());
+    let hour = new Date(timeDiff).getUTCHours();
+    let hourReturn = hour<10?"0"+hour:hour;
+    let min = new Date(timeDiff).getUTCMinutes();
+    let minReturn = min<10?"0"+min:min;
+    let sec = new Date(timeDiff).getUTCSeconds();
+    let secReturn = sec<10?"0"+sec:sec;
+    let milSec = new Date(timeDiff).getUTCMilliseconds();
+    let milSecReturn = milSec<10?"00"+milSec:milSec<100?"0"+milSec:milSec;
+    return hourReturn+":"+minReturn+":"+secReturn+"."+milSecReturn;
 }
-
 
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
@@ -94,7 +112,18 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(date) {
-    throw new Error('Not implemented');
+    /* 1. first
+    Δ θ = | θ hr − θ min. | 
+        = | 0.5 ∘ × ( 60 × H + M ) − 6 ∘ × M | 
+        = | 0.5 ∘ × ( 60 × H + M ) − 0.5 ∘ × 12 × M | 
+        = | 0.5 ∘ × ( 60 × H − 11 × M ) | 
+    */
+    let hoursFromDate = Math.abs(date.getUTCHours()>12?date.getUTCHours()-12:date.getUTCHours());
+    let hours = Math.abs((hoursFromDate>6&&hoursFromDate<=9)?hoursFromDate-6:hoursFromDate);
+    let minutes = date.getUTCMinutes();
+    let angleHours = 0.5*(60*hours+minutes)>180?360-0.5*(60*hours+minutes):0.5*(60*hours+minutes);
+    let angleMinutes = 6*minutes;
+    return (angleHours === angleMinutes)?5.45*hours*Math.PI/180:Math.abs(0.5*(60*hours-11*minutes))*Math.PI/180;
 }
 
 
