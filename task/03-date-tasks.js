@@ -23,8 +23,8 @@
  */
 function parseDataFromRfc2822(value) {
     let theBigDay = new Date(value);
-    let sameAsBigDay = new Date();
-    return sameAsBigDay.setTime(theBigDay.getTime());
+    let utcDate = new Date(Date.UTC(theBigDay.getFullYear(), theBigDay.getMonth(), theBigDay.getDay(), theBigDay.getHours(), theBigDay.getMinutes(), theBigDay.getSeconds()));
+    return utcDate;
 }
 
 /**
