@@ -31,7 +31,10 @@ function parseDataFromRfc2822(value) {
     console.log('return old - '+Date.parse(value));
     console.log('return local - '+Date.parse(newDate.toLocaleDateString()));
     console.log('return test' - utcDate);
-    return Date.parse(value);
+    let offSet = newDate.getTimezoneOffset();
+    console.log('offSet - '+offSet);
+    console.log('isoString - '+newDate.toISOString());
+    return new Date(newDate.toISOString()); //Date.parse(value);
 }
 
 /**
