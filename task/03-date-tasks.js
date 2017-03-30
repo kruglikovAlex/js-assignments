@@ -24,12 +24,14 @@
 function parseDataFromRfc2822(value) {
     let newDate = new Date(value);
     let stringUTCDate = newDate.toUTCString();
+    let utcDate = Date.UTC(newDate.getUTCFullYear(),newDate.getUTCMonth(),newDate.getUTCDay(),newDate.getUTCHours(),newDate.getUTCMinutes(),newDate.getUTCSeconds());
     console.log('newDate - '+newDate);
     console.log('stringUTCDate - '+stringUTCDate);
     console.log('return - '+Date.parse(stringUTCDate));
     console.log('return old - '+Date.parse(value));
     console.log('return local - '+Date.parse(newDate.toLocaleDateString()));
-    return Date.parse(newDate.toLocaleDateString());//Date.parse(stringUTCDate);
+    console.log('return test' - utcDate);
+    return Date.parse(value);
 }
 
 /**
