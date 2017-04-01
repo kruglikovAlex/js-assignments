@@ -38,7 +38,11 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   throw new Error('Not implemented');
+   // Генерирование последовательности чисел
+   //Array.from({ length: len*2 }, (v, k) => k)
+   // Традиционный вывод чётных/нечётных чисел
+   //.filter((x)=>x%2);
+  return  Array.from({ length: len*2 }, (v, k) => k).filter((x)=>x%2);
 }
 
 
