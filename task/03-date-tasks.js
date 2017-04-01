@@ -22,23 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-    let newDate = Date.parse(value);
-    let offset;
-    if(value.lastIndexOf('GMT') != -1){
-      offset = value.substring(value.lastIndexOf('GMT')+4);
-    }else{
-      offset = 0;
-    }
-    let sing = value.substr(value.lastIndexOf('GMT')+3,1);
-    if(offset.length >0){
-      if(sing == '+'){
-        return newDate+offset*59*60*1000;
-      } else {
-        return newDate-offset*59*60*1000;
-      }
-    }else{
-      return newDate;
-    }
+      return Date.parse(value);
 }
 
 /**
