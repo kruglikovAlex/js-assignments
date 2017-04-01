@@ -22,10 +22,7 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
-
-  console.log('date - '+value);
     let newDate = Date.parse(value);
-    console.log('newDate - '+newDate);
     let offset;
     if(value.lastIndexOf('GMT') != -1){
       offset = value.substring(value.lastIndexOf('GMT')+4);
@@ -33,9 +30,6 @@ function parseDataFromRfc2822(value) {
       offset = 0;
     }
     let sing = value.substr(value.lastIndexOf('GMT')+3,1);
-    console.log('offset - '+offset);
-    console.log('sing - '+sing);
-    console.log('test - '+(newDate+59*60*1000));
     if(offset.length >0){
       if(sing == '+'){
         return newDate+offset*59*60*1000;
@@ -45,21 +39,6 @@ function parseDataFromRfc2822(value) {
     }else{
       return newDate;
     }
-    /*
-    let stringUTCDate = newDate.toUTCString();
-    let utcDate = Date.UTC(newDate.getUTCFullYear(),newDate.getUTCMonth(),newDate.getUTCDay(),newDate.getUTCHours(),newDate.getUTCMinutes(),newDate.getUTCSeconds());
-    console.log('newDate - '+newDate);
-    console.log('stringUTCDate - '+stringUTCDate);
-    console.log('return - '+Date.parse(stringUTCDate));
-    console.log('return old - '+Date.parse(value));
-    console.log('return local - '+Date.parse(newDate.toLocaleDateString()));
-    console.log('return test' - utcDate);
-    let offSet = newDate.getTimezoneOffset();
-    console.log('offSet - '+offSet);
-    console.log('isoString - '+newDate.toISOString());
-    console.log('test =' + new Date(newDate+offSet*50*1000));
-    return new Date(newDate.toISOString()); //Date.parse(value);*/
-    //return newDate;
 }
 
 /**
