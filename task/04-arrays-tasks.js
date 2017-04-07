@@ -106,7 +106,7 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-   throw new Error('Not implemented');
+    return arr.filter((x)=>Boolean(x));
 }
 
 /**
@@ -204,7 +204,10 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   throw new Error('Not implemented');
+  /*return arr.reduce(function(a, b) {
+            return (a+"\n").concat(b);
+          });*/
+  return arr.reduce((a, b) =>(a+"\n").concat(b));
 }
 
 /**
@@ -219,7 +222,7 @@ function toCsvText(arr) {
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-   throw new Error('Not implemented');
+   return arr.map((x)=>Math.pow(x,2));
 }
 
 
@@ -238,7 +241,14 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-   throw new Error('Not implemented');
+  let resArray = [];
+  let lastElement = arr.reduce((sumNearbyElement, x) =>{
+      resArray.push(sumNearbyElement);
+      return sumNearbyElement + x;
+      }
+    );
+  resArray.push(lastElement);
+  return resArray;
 }
 
 /**
@@ -253,7 +263,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   throw new Error('Not implemented');
+    return arr.filter((x)=>arr.indexOf(x)%2!=0);
 }
 
 
@@ -272,6 +282,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
+    //return arr.splice(1,0, Number.MAX_VALUE)
    throw new Error('Not implemented');
 }
 
