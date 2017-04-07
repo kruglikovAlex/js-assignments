@@ -282,8 +282,9 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-    //return arr.splice(1,0, Number.MAX_VALUE)
-   throw new Error('Not implemented');
+    var result = [];
+    arr.map((x, ind) =>result = result.concat(Array(ind + 1).fill(x)));
+    return result;
 }
 
 
@@ -301,7 +302,7 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   throw new Error('Not implemented');
+   return arr.sort((a, b)=>b - a).splice(0,3);
 }
  
  
