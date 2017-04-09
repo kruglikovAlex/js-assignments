@@ -319,13 +319,14 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  */
 function getPositivesCount(arr) {
-    /* V1
+    /* V1 */
     let count = 0;
     arr.map((x) =>{if(x>0) count++;});
     return count;
-    */
-    /* V2 */
+    
+    /* V2
     return arr.filter(x => x>0 && Number.isFinite(x)).length;
+    */
 }
  
 /** 
